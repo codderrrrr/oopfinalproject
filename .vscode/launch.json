@@ -1,6 +1,33 @@
 {
   "version": "0.2.0",
   "configurations": [
+
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Cargo test",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--lib"
+        ]
+      },
+      "args": []
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Cargo launch",
+      "cargo": {
+        "args": [
+          "build",
+          "--lib"
+        ]
+      },
+      "args": []
+    },
+
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",

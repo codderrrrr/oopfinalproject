@@ -2,12 +2,13 @@
 #define APP_H
 
 #include "user.h"
-#include "page.h"
 #include "post.h"
 #include "likes.h"
-class app : virtual public user, virtual public post, virtual public likes{
+#include "comments.h"
+class app : virtual public user, virtual public post, virtual public likes , virtual public comments{
 private:
     int choice;
+    int choice2;
 public:
     app() : user() {
     choice = 0;
@@ -16,12 +17,35 @@ public:
     while (choice != 3) {
         std::cout << "Enter:\n1) Sign-in\n2) Sign-up\n3) Exit\n";
         std::cin >> choice;
-
         if (choice == 1) {
-            SIGNIN();
-            home();
-            displaylike();
-            likepost();
+            if(SIGNIN()==1){
+                home();
+                while(1){
+                cout << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:exit\n";
+                cin >> choice2;
+                if(choice2==1){
+                    cin.ignore();
+                    displaylike();
+                }
+                else if(choice2==2){
+                    cin.ignore();
+                    likepost();
+                }
+                else if(choice2==3){
+                    cin.ignore();
+                    comment();
+                }
+                else if(choice2==4){
+                    display();
+                }
+                else if(choice2==5){
+                    break;
+                }
+                else{
+                    cout << "invalid option:" << endl;
+                }
+                }
+            }
         } else if (choice == 2) {
             SIGNUP();
         } else if (choice == 3) {

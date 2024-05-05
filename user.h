@@ -28,7 +28,7 @@ public:
         no = lines;
         signin.close();
     }
-    void SIGNIN(){
+    bool SIGNIN(){
         fstream signin("signin.txt");
          if (signin.is_open()) {
         string n,p,id;
@@ -123,11 +123,12 @@ public:
                 cout << "login" << endl;
                 match = true;
                 signin.close();
-                break;
+                return 1;
             }
         }
         if(!match){
             cout << "invalid password or id" << endl;
+            return 0;
             signin.close();
         }
     }

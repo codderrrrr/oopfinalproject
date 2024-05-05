@@ -5,7 +5,7 @@
 #include <fstream>
 using namespace std;
 
-class post : virtual public user{
+class post :virtual public user{
 string postid;
 public:
 post(){
@@ -39,8 +39,24 @@ void home() {
             }
         }
     }
-void likes(){
-
+void display(){
+    cout << "enter id of post you want to display" << endl;
+    cin.ignore();
+    getline(cin,postid);
+    string comment_;
+    fstream comment("comments.txt");
+    if(comment.is_open()){
+            while(!comment.eof()){
+            comment_ = "";
+            getline(comment,comment_);
+            if(comment_.substr(0,postid.length())==postid){
+            cout << comment_.substr(postid.length()+1) << endl;
+        }
+        }
+    }
+    else{
+        cout << "file is not able to open" << endl;
+    } 
 }
 };
 

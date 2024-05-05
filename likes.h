@@ -4,9 +4,10 @@
 #include <string>
 #include <fstream>
 #include "post.h"
+#include "user.h"
 using namespace std;
 
-class likes: virtual public post{
+class likes: virtual public post , virtual public user{
     string likepostid;
 public:
 void displaylike(){
@@ -42,17 +43,46 @@ void displaylike(){
                 }
                 break;
             }
-          }
+        }
     }
     else{
         cout << "couldnot open file" << endl;
     }
+    LIKE.close();
 }
 void likepost(){
     cout << "enter the id of post you want to like: " << endl;
     getline(cin,likepostid);
     fstream temp("temp.txt");
-    
+    fstream like_("likes.txt");
+    while(!like_.eof()){
+        string line = "";
+        getline(like_,line);
+        if(line.substr(0,5)==likepostid){
+            if(line[line.length()-1]!='-'){
+                line += " " + getuserid();
+                temp << line << endl;
+            }
+            else{
+                line += getuserid();
+               temp << line << endl;
+            }
+        }
+        else{
+            temp << line << endl;
+        }
+    }
+    like_.close();
+    temp.seekg(0, std::ios::beg);
+    fstream like("likes.txt");
+    while(!temp.eof()){
+        string line = "";
+        getline(temp,line);
+        like << line;
+        like << endl;
+    }
+    temp.close();
+    like.close();
 }   
 };
 

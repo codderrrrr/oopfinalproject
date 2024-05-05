@@ -2,11 +2,11 @@
 #define APP_H
 
 #include "user.h"
-
-class app : public user {
+#include "page.h"
+#include "post.h"
+class app : virtual public user, virtual public post{
 private:
     int choice;
-
 public:
     app() : user() {
     choice = 0;
@@ -18,6 +18,7 @@ public:
 
         if (choice == 1) {
             SIGNIN();
+            home();
         } else if (choice == 2) {
             SIGNUP();
         } else if (choice == 3) {

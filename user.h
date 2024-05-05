@@ -5,31 +5,36 @@
 #include <fstream>
 using namespace std;
 
-class user {
+class user{
 private:
     string name;
     string password;
     string userid;
+    string friends;
+    int no;
 
 public:
     user(){
         name = "";
         password = "";
         userid = "";
-    }
-    void SIGNIN(){
         fstream signin("signin.txt");
-    if (signin.is_open()) {
-        string n,p,id;
-        int authenticate = 0;
-        bool match = false;
         int lines = 0;
         while(!signin.eof()){
             string temp;
             getline(signin,temp);
             lines++;
         }
-        signin.seekg(0, ios::beg);
+        no = lines;
+        signin.close();
+    }
+    void SIGNIN(){
+        fstream signin("signin.txt");
+         if (signin.is_open()) {
+        string n,p,id;
+        int authenticate = 0;
+        bool match = false;
+        int lines = 0;
         cin.ignore();
         cout << "enter name:" << endl;
         getline(cin,name);
@@ -37,11 +42,12 @@ public:
         getline(cin,userid);
         cout << "enter password" << endl;
         getline(cin,password);
-        for (int i = 0; i < lines; i++) {
+        for (int i = 0; i < no; i++) {
             char ip;
             n = "";
             p = "";
             id = "";
+            friends = "";
             while(signin.get(ip)){
                 if(ip == '\n'){
                     continue;
@@ -64,6 +70,14 @@ public:
             while(signin.get(ip)){
                 if(ip!='-'){
                     p += ip;
+                }
+                else{
+                    break;
+                }
+            }
+            while(signin.get(ip)){
+                if(ip!='-'){
+                    friends += ip;
                 }
                 else{
                     break;
@@ -122,6 +136,7 @@ public:
     }
     }
     void SIGNUP(){
+        cout << no << endl;
         cin.ignore();
     cout << "enter name:" << endl;
     getline(cin,name);
@@ -135,13 +150,7 @@ public:
         int authenticate = 0;
         bool match = false;
         int lines = 0;
-        while(!signin.eof()){
-            string temp;
-            getline(signin,temp);
-            lines++;
-        }
-        signin.seekg(0, ios::beg);
-        for (int j = 0; j < lines; j++) {
+        for (int j = 0; j < no; j++) {
             char ip;
             n = "";
             p = "";
@@ -234,6 +243,14 @@ public:
         cout << "file couldnot open" << endl;
     }
     }
+    int getno(){
+        return no;
+    }
+    string getuserid(){
+        return userid;
+    }
+    string getfriends(){
+        return friends;
+    }
 };
-
 #endif 

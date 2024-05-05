@@ -4,7 +4,8 @@
 #include "user.h"
 #include "page.h"
 #include "post.h"
-class app : virtual public user, virtual public post{
+#include "likes.h"
+class app : virtual public user, virtual public post, virtual public likes{
 private:
     int choice;
 public:
@@ -19,6 +20,8 @@ public:
         if (choice == 1) {
             SIGNIN();
             home();
+            displaylike();
+            likepost();
         } else if (choice == 2) {
             SIGNUP();
         } else if (choice == 3) {

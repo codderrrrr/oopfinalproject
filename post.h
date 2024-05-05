@@ -7,8 +7,10 @@ using namespace std;
 
 class post : virtual public user{
 string postid;
-string POST;
 public:
+post(){
+    postid = "";
+}
 void home() {
         string ftemp = getfriends();
         string temp;

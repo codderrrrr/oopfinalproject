@@ -31,20 +31,18 @@ public:
     bool SIGNIN(){
         fstream signin("signin.txt");
          if (signin.is_open()) {
-        string n,p,id;
+        string p,id;
         int authenticate = 0;
         bool match = false;
         int lines = 0;
         cin.ignore();
-        cout << "enter name:" << endl;
-        getline(cin,name);
         cout << "enter id" << endl;
         getline(cin,userid);
         cout << "enter password" << endl;
         getline(cin,password);
         for (int i = 0; i < no; i++) {
             char ip;
-            n = "";
+            name = "";
             p = "";
             id = "";
             friends = "";
@@ -53,7 +51,7 @@ public:
                     continue;
                 }
                 else if(ip!='-'){
-                    n += ip;
+                    name += ip;
                 }
                 else{
                     break;
@@ -266,6 +264,84 @@ public:
             cout << "couldnot open file" << endl;
         }
         posts.close();
+    }
+    void viewfriendlist(){
+        fstream user_("friends.txt");
+        system("clear");
+        string extract;
+        string friend_;
+        string friend2_;
+        if(user_.is_open()){
+            while(!user_.eof()){
+                getline(user_,extract);
+                if(extract.substr(0,name.length())==name){
+                    friend_ = extract.substr(name.length()+1);
+                    break;
+                }
+            }
+            int i = 0;
+            cout << name << " has following friends:\n";
+            cout << "---------------------------------------------------" << endl;
+            while(friend_[i]!='\0'){
+                friend2_ ="";
+                while(friend_[i]!=' ' && friend_[i]!='\0'){
+                    friend2_ += friend_[i];
+                    i++;
+                }
+                while(friend_[i]==' '){
+                    i++;
+                }
+                string temp;
+                if(friend2_[0]=='s'){
+                    fstream f("name.txt");
+                    if(f.is_open()){
+                        while(!f.eof()){
+                            getline(f,temp);
+                            if(temp.substr(0,2)==friend2_){
+                                cout << temp.substr(3) << endl;
+                            }
+                        }
+                    }
+                    else{
+                        cout << "file couldnot open" << endl;
+                    }
+                    f.close();
+                }
+            }
+            i = 0;
+            cout << endl <<  name << " has following pages he has liked:\n";
+            cout << "---------------------------------------------------" << endl;
+            while(friend_[i]!='\0'){
+                friend2_ ="";
+                while(friend_[i]!=' ' && friend_[i]!='\0'){
+                    friend2_ += friend_[i];
+                    i++;
+                }
+                while(friend_[i]==' '){
+                    i++;
+                }
+                string temp;
+                if(friend2_[0]=='p'){
+                    fstream f2("page.txt");
+                    if(f2.is_open()){
+                        while(!f2.eof()){
+                            getline(f2,temp);
+                            if(temp.substr(0,2)==friend2_){
+                                cout << temp.substr(3) << endl;
+                            }
+                        }
+                    }
+                    else{
+                        cout << "file couldnot open" << endl;
+                    }
+                    f2.close();
+                }
+            }
+        }
+        else{
+            cout << "file couldnot open" << endl;
+        }
+        user_.close();
     }
     string getuserid(){
         return userid;

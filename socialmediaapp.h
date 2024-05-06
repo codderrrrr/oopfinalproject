@@ -22,7 +22,7 @@ public:
             if(SIGNIN()==1){
                 home();
                 while(1){
-                cout << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:exit\n";
+                cout << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:exit\n";
                 cin >> choice2;
                 if(choice2==1){
                     cin.ignore();
@@ -41,6 +41,15 @@ public:
                 }
                 else if(choice2==5){
                     userprofile();
+                }
+                else if(choice2==6){
+                    pageprofile();
+                }
+                else if(choice2==7){
+                    viewfriendlist();
+                }
+                else if(choice2==8){
+                    break;
                 }
                 else{
                     cout << "invalid option:" << endl;

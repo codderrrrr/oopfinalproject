@@ -40,7 +40,7 @@ void home() {
         }
     }
 void display(){
-    cout << "enter id of post you want to display" << endl;
+    cout << "enter id of post you want to display post with comments:" << endl;
     cin.ignore();
     getline(cin,postid);
     string comment_;

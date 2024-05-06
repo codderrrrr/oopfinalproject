@@ -1,3 +1,3 @@
-p1	Food Fusion
-p2	Al Jazeera English
-p3	Allama Iqbal
+p1-Food Fusion
+p2-Al Jazeera English
+p3-Allama Iqbal

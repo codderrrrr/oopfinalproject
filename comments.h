@@ -16,7 +16,7 @@ void comment(){
     getline(cin,comment_);
     fstream comment("comments.txt" , ios::app);
     if(comment.is_open()){
-        comment << endl << id << "-" << comment_ << endl;
+        comment << endl << id << "-" << comment_;
     }
     else{
         cout << "cannot open file\n";

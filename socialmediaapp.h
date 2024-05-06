@@ -5,7 +5,8 @@
 #include "post.h"
 #include "likes.h"
 #include "comments.h"
-class app : virtual public user, virtual public post, virtual public likes , virtual public comments{
+#include "page.h"
+class app : virtual public user, virtual public post, virtual public likes , virtual public comments, virtual public page{
 private:
     int choice;
     int choice2;
@@ -39,7 +40,7 @@ public:
                     display();
                 }
                 else if(choice2==5){
-                    break;
+                    userprofile();
                 }
                 else{
                     cout << "invalid option:" << endl;

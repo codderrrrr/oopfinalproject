@@ -4,6 +4,6 @@ post3-s1
 post4-s1
 post5-s1 s2
 post6-s1 p2
-post7-s2 p3 s1
+post7-s2 p3 s1 s1
 post8-
 post9-s1 s2 p2

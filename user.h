@@ -247,6 +247,26 @@ public:
     int getno(){
         return no;
     }
+    void userprofile(){
+        system("clear");
+        cout << endl << endl;
+        cout << "\t\t\t\tNAME : " << name << endl;
+        cout << "\t\t\t\tUSERID: " << userid << endl;
+        fstream posts("post.txt");
+        string post;
+        if(posts.is_open()){
+            while(!posts.eof()){
+                getline(posts,post);
+                if(post.substr(0,userid.length())==userid){
+                    cout << endl << name << "posted" << post.substr(userid.length()+1,post.length()-10) << endl << endl;
+                }
+            }
+        }
+        else{
+            cout << "couldnot open file" << endl;
+        }
+        posts.close();
+    }
     string getuserid(){
         return userid;
     }

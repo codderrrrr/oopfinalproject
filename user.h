@@ -10,7 +10,6 @@ private:
     string name;
     string password;
     string userid;
-    string friends;
 
 public:
     user(){
@@ -68,10 +67,64 @@ public:
         return 0;
     }
 }
-
+bool alreadyindb() {
+    cin.ignore();
+    string textreader,n,p,id;
+    fstream signin("signin.txt");
+    if(signin.is_open()){
+        cout << "enter id:\t";
+        getline(cin,userid);
+        while(!signin.eof()){
+            n = "", p = "", id = "";
+            textreader = "";
+            getline(signin,textreader);
+            int i = 0;
+            while(textreader[i]!='\0'){
+                while(textreader[i]!='-'){
+                    n += textreader[i];
+                    i++;
+                }
+                i++;
+                while(textreader[i]!='-'){
+                    id += textreader[i];
+                    i++;
+                }
+                i++;
+                while(textreader[i]!='-'){
+                    p += textreader[i];
+                    i++;
+                }
+                i++;
+            }
+            if(userid==id){
+                return 1;
+            }
+        }
+        cout << userid << endl;
+        return 0;
+    }
+    else{
+        cout << "couldnot open file" << endl;
+        return 0;
+    }
+}
     void SIGNUP(){
-        if(SIGNIN()==0){
-            
+        if(alreadyindb()==0){
+            cout << "enter name:\t";
+            getline(cin,name);
+            cout << "enter password:\t";
+            getline(cin,password);
+            fstream signin("signin.txt", ios::app);
+            fstream info("name.txt", ios::app);
+            fstream friend_("friends.txt", ios::app);
+            if(signin.is_open() && info.is_open()){
+                signin << "\n" << name << "-" << userid << "-" << password << "-";
+                info << "\n" << userid << "-" << name;
+                friend_ << "\n" << name << "-";
+            }
+            else{
+                cout << "couldnot open file";
+            }
         }
         else{
             cout << "data already in database" << endl;
@@ -226,9 +279,7 @@ public:
     string getuserid(){
         return userid;
     }
-    string getfriends(){
-        return friends;
-    }
+    
     string getname(){
         return name;
     }

@@ -1,2 +1,2 @@
-saad waqar-s2 p1 p2
+saad waqar-s2 p1 p2 s1 s2
 ahad-s1 p2 

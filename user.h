@@ -11,239 +11,71 @@ private:
     string password;
     string userid;
     string friends;
-    int no;
 
 public:
     user(){
         name = "";
         password = "";
         userid = "";
-        fstream signin("signin.txt");
-        int lines = 0;
-        while(!signin.eof()){
-            string temp;
-            getline(signin,temp);
-            lines++;
-        }
-        no = lines;
-        signin.close();
     }
-    bool SIGNIN(){
-        fstream signin("signin.txt");
-         if (signin.is_open()) {
-        string p,id;
-        int authenticate = 0;
-        bool match = false;
-        int lines = 0;
-        cin.ignore();
-        cout << "enter id" << endl;
-        getline(cin,userid);
-        cout << "enter password" << endl;
-        getline(cin,password);
-        for (int i = 0; i < no; i++) {
-            char ip;
-            name = "";
-            p = "";
-            id = "";
-            friends = "";
-            while(signin.get(ip)){
-                if(ip == '\n'){
-                    continue;
-                }
-                else if(ip!='-'){
-                    name += ip;
-                }
-                else{
-                    break;
-                }
-            }
-            while(signin.get(ip)){
-                if(ip!='-'){
-                    id += ip;
-                }
-                else{
-                    break;
-                }
-            }
-            while(signin.get(ip)){
-                if(ip!='-'){
-                    p += ip;
-                }
-                else{
-                    break;
-                }
-            }
-            while(signin.get(ip)){
-                if(ip!='-'){
-                    friends += ip;
-                }
-                else{
-                    break;
-                }
-            }
-            if(userid.length()==id.length())
-            {
-                int i = 0;
-                while(i < userid.length()){
-                    if(userid[i]==id[i]){
-                        i++;
-                    }
-                    else{
-                        break;
-                    }
-                }
-                if(i==userid.length()){
-                    authenticate++;
-                }
-                else{
-                    continue;
-                }
-            }
-            if(password.length()==p.length())
-            {
-                int i = 0;
-                while(i < password.length()){
-                    if(password[i]==p[i]){
-                        i++;
-                    }
-                    else{
-                        break;
-                    }
-                }
-                if(i==password.length()){
-                    authenticate++;
-                }
-                else{
-                    continue;
-                }
-            }
-            if(authenticate==2){
-                cout << "login" << endl;
-                match = true;
-                signin.close();
-                return 1;
-            }
-        }
-        if(!match){
-            cout << "invalid password or id" << endl;
-            return 0;
-            signin.close();
-        }
-    }
-    else{
-        cout << "file couldnot open" << endl;
-    }
-    }
-    void SIGNUP(){
-        cout << no << endl;
-        cin.ignore();
-    cout << "enter name:" << endl;
-    getline(cin,name);
-    cout << "enter id" << endl;
-    getline(cin,userid);
-    cout << "enter password" << endl;
-    getline(cin,password);
+    
+    bool SIGNIN() {
+    cin.ignore();
+    string textreader,n,p,id;
     fstream signin("signin.txt");
-    if (signin.is_open()) {
-        string n,p,id;
-        int authenticate = 0;
-        bool match = false;
-        int lines = 0;
-        for (int j = 0; j < no; j++) {
-            char ip;
-            n = "";
-            p = "";
-            id = "";
-            while(signin.get(ip)){
-                if(ip == '\n'){
-                    continue;
+    if(signin.is_open()){
+        cout << "enter id:\t";
+        getline(cin,userid);
+        cout << "enter password:\t";
+        getline(cin,password);
+        while(!signin.eof()){
+            n = "", p = "", id = "";
+            textreader = "";
+            getline(signin,textreader);
+            int i = 0;
+            while(textreader[i]!='\0'){
+                while(textreader[i]!='-'){
+                    n += textreader[i];
+                    i++;
                 }
-                else if(ip!='-'){
-                    n += ip;
+                i++;
+                while(textreader[i]!='-'){
+                    id += textreader[i];
+                    i++;
                 }
-                else{
-                    break;
+                i++;
+                while(textreader[i]!='-'){
+                    p += textreader[i];
+                    i++;
                 }
+                i++;
             }
-            while(signin.get(ip)){
-                if(ip!='-'){
-                    id += ip;
-                }
-                else{
-                    break;
-                }
+            int j = 0;
+            if(id!=userid){
+                continue;
             }
-            while(signin.get(ip)){
-                if(ip!='-'){
-                    p += ip;
-                }
-                else{
-                    break;
-                }
+            if(p!=password){
+                cout << "password not matched" << endl;
+                continue;
             }
-            if(userid.length()==id.length())
-            {
-                unsigned int i = 0;
-                while(i < userid.length()){
-                    if(userid[i]==id[i]){
-                        i++;
-                    }
-                    else{
-                        break;
-                    }
-                }
-                if(i== userid.length()){
-                    authenticate++;
-                }
-                else{
-                    continue;
-                }
-            }
-            if(password.length()==p.length())
-            {
-                unsigned int i = 0;
-                while( i < password.length()){
-                    if(password[i]==p[i]){
-                        i++;
-                    }
-                    else{
-                        break;
-                    }
-                }
-                if(i==password.length()){
-                    authenticate++;
-                }
-                else{
-                    continue;
-                }
-            }
-            if(authenticate==2){
-                cout << "already exist in database." << endl;
-                match = true;
-                signin.close();
-                break;
-            }
+            name = n;
+            return 1;
         }
-        if(!match){
-            signin.close();
-            fstream signin("signin.txt",ios::app);
-            if(signin.is_open()){
-                signin << endl;
-                signin << name;
-                signin << "-";
-                signin << userid;
-                signin << "-";
-                signin << password;
-                signin << "-";
-            }
-        }
+        return 0;
     }
     else{
-        cout << "file couldnot open" << endl;
+        cout << "couldnot open file" << endl;
+        return 0;
     }
-    }
-    int getno(){
-        return no;
+}
+
+    void SIGNUP(){
+        if(SIGNIN()==0){
+            
+        }
+        else{
+            cout << "data already in database" << endl;
+        }
     }
     void userprofile(){
         system("clear");
@@ -343,11 +175,62 @@ public:
         }
         user_.close();
     }
+    void addfriend(){
+        fstream friend_("friends.txt");
+        fstream namesandid("name.txt");
+        fstream temporaryfile("temp2.txt");
+        string f;
+        if(friend_.is_open() && temporaryfile.is_open() &&  namesandid.is_open()){
+            string temp;
+            string info;
+            while(!friend_.eof()){
+                getline(friend_,temp);
+                if(temp.substr(0,name.length())==name)
+                {
+                    cout << "enter id of user you want to add friend: " << endl;
+                    while(!namesandid.eof()){
+                        getline(namesandid,info);
+                        cout << info.substr(0,userid.length()) << ":\t" << info.substr(userid.length()+1) << endl;
+                    }
+                    cin.ignore();
+                    getline(cin,f);
+                    temp += " " + f;
+                    temporaryfile << temp << endl; 
+                    
+                }
+                else{
+                    temporaryfile << temp << endl;
+                }
+            }
+        }
+        else{
+            cout << "couldnot open file\n";
+        }
+        friend_.close();
+        temporaryfile.close();
+        fstream friend__("friends.txt");
+        fstream temporaryfile_("temp2.txt");
+        f = "";
+        if(temporaryfile_.is_open() && friend__.is_open()){
+            while(!temporaryfile_.eof()){
+                getline(temporaryfile_,f);
+                friend__ << f << endl;
+            }
+        }
+        else{
+            cout << "couldnot open file " << endl;
+        }
+        friend__.close();
+        temporaryfile_.close();
+    }
     string getuserid(){
         return userid;
     }
     string getfriends(){
         return friends;
+    }
+    string getname(){
+        return name;
     }
 };
 #endif 

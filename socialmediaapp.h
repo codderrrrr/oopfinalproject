@@ -49,6 +49,9 @@ public:
                     viewfriendlist();
                 }
                 else if(choice2==8){
+                    addfriend();
+                }
+                else if(choice2=9){
                     break;
                 }
                 else{

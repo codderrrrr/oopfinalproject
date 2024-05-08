@@ -1,11 +1,13 @@
 #ifndef APP_H
 #define APP_H
 
+#include <iostream>
 #include "user.h"
 #include "post.h"
 #include "likes.h"
 #include "comments.h"
 #include "page.h"
+//#include <conio.h>
 class app : virtual public user, virtual public post, virtual public likes , virtual public comments, virtual public page{
 private:
     int choice;
@@ -21,6 +23,8 @@ public:
         if (choice == 1) {
             if(SIGNIN()==1){
                 home();
+                cout << "Press any key to continue..." << std::endl;
+                cin.get(); 
                 while(1){
                 cout << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:exit\n";
                 cin >> choice2;

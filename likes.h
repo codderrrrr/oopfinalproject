@@ -11,8 +11,35 @@ class likes: virtual public post , virtual public user{
     string likepostid;
 public:
 void displaylike(){
-    cout << "enter postid to like" << endl;
+    cout << "enter postid to view like" << endl;
     getline(cin,likepostid);
+    fstream post_("post.txt");
+    if(post_.is_open()){
+        string postextract;
+        int stop = 0;
+        while(getline(post_,postextract)){
+            int i = 0;
+            if(postextract.find(likepostid)!= string::npos){
+                int i = 0;
+                cout << "POSTED BY:\t";
+                while(postextract[i]!='-'){
+                    cout << postextract[i];
+                    i++;
+                }
+                i++;
+                cout << "\n\t\t\"";
+                while(postextract[i]!='-'){
+                    cout << postextract[i];
+                    i++;
+                }
+                cout << "\""<<endl;
+                break;
+            }
+        }
+    }
+    else{
+        cout << "couldnot open file\n";
+    }
     fstream LIKE("likes.txt");
     if(LIKE.is_open()){
           while(!LIKE.eof()){

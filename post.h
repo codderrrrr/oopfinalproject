@@ -5,6 +5,7 @@
 #include <fstream>
 using namespace std;
 
+
 class post :virtual public user{
 string postid;
 public:
@@ -12,33 +13,57 @@ post(){
     postid = "";
 }
 void home() {
-        string ftemp = getfriends();
-        string temp;
-        system("clear");
-        int i = 0;
-        while(ftemp[i]!='\0') {
-            temp = "";
-            while (ftemp[i] != ' ' && ftemp[i] != '\0') {
-                temp += ftemp[i];
-                i++;
-            }
-            i++;
-            fstream post("post.txt");
-            if (post.is_open()) {
-                string exist;
-                while (!post.eof()) {
-                    getline(post,exist);
-                    if (exist.substr(0, temp.length()) == temp) {
-                        cout << exist.substr(0, temp.size()) << "posted ";
-                        cout << exist.substr(temp.length()+1, exist.length()-10) << endl;
+    system("clear");
+    cout << "   _   " << endl;
+    cout << "  | |  " << endl;
+    cout << "  | |__   ___  _ __ ___   ___   _ __   __ _  __ _  ___" << endl;
+    cout << "  | '_ \\ / _ \\| '_ ` _ \\ / _ \\ | '_ \\ / _` |/ _` |/ _ \\" << endl;
+    cout << "  | | | | (_) | | | | | |  __/ | |_) | (_| | (_| |  __/" << endl;
+    cout << "  |_| |_|\\___/|_| |_| |_|\\___| | .__/ \\__,_|\\__, |\\___|" << endl;
+    cout << "                                | |          __/ |" << endl;
+    cout << "                                |_|         |___/ " << endl;                                                
+    fstream signin("friends.txt");
+    if(signin.is_open()){
+        string extract,friendextract,friends;
+        string n = getname();
+        string id = getuserid();
+        while(getline(signin,extract))
+        {
+            if(extract.substr(0,n.length())==n){
+                extract = extract.substr(n.length()+1);
+                int i = 0;
+                while(extract[i]!='\0'){
+                    friendextract = "";
+                    while(extract[i]!=' ' && extract[i]!='\0'){
+                        friendextract = friendextract + extract[i];
+                        i++;
                     }
+                    i++;
+                    fstream post_("post.txt");
+                    if(post_.is_open()){
+                        while(getline(post_,friends)){
+                            if(friends.substr(0,friendextract.length())==friendextract){
+                                friends = friends.substr(friendextract.length()+1);
+                                int j = 0;
+                                cout << friendextract << " posted:\n\t\t";
+                                while(friends[j]!='-'){
+                                    cout << friends[j];
+                                    j++;
+                                } 
+                                cout << endl;
+                            }
+                        }
+                    }
+                    else{
+                        cout << "couldnot open file" << endl;
+                    }
+                    post_.close();
                 }
-                post.close();
-            } else {
-                cout << "file couldnot open" << endl;
             }
         }
     }
+}
+
 void display(){
     cout << "enter id of post you want to display post with comments:" << endl;
     cin.ignore();

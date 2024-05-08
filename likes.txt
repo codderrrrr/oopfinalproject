@@ -1,10 +1,9 @@
-post1-s2
-post2-p1 s1
-post3-s1
-post4-s1
-post5-s1 s2
-post6-s1 p2
-post7-s2 p3 s1 s1
-post8-
-post9-s1 s2 p2
-
+post1-ahad@fast my_name_is_ali
+post2-p1 saad_
+post3-saad_ my_name_is_ali
+post4-saad_
+post5-saad_ ahad@fast
+post6-saad_ p2
+post7-ahad@fast p3 saad_ saad_
+post8-saad_
+post9-saad_ ahad@fast p2

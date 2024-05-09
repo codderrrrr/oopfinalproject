@@ -69,13 +69,17 @@ void display(){
     cin.ignore();
     getline(cin,postid);
     string comment_;
+    string uid = getuserid();
     fstream comment("comments.txt");
     if(comment.is_open()){
             while(!comment.eof()){
             comment_ = "";
             getline(comment,comment_);
             if(comment_.substr(0,postid.length())==postid){
-            cout << comment_.substr(postid.length()+1) << endl;
+            comment_ = comment_.substr(postid.length()+1);
+            cout << comment_.substr(0,uid.length()) << endl;
+            comment_ = comment_.substr(uid.length()+1);
+            cout << "\t" << comment_ << endl;
         }
         }
     }

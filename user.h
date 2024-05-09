@@ -10,7 +10,6 @@ private:
     string name;
     string password;
     string userid;
-
 public:
     user(){
         name = "";
@@ -132,6 +131,7 @@ bool alreadyindb() {
     }
     void userprofile(){
         system("clear");
+        cin.ignore();
         cout << endl << endl;
         cout << "\t\t\t\tNAME : " << name << endl;
         cout << "\t\t\t\tUSERID: " << userid << endl;
@@ -141,7 +141,7 @@ bool alreadyindb() {
             while(!posts.eof()){
                 getline(posts,post);
                 if(post.substr(0,userid.length())==userid){
-                    cout << endl << name << "posted" << post.substr(userid.length()+1,post.length()-10) << endl << endl;
+                    cout << endl << name << "\n\t\t" <<  "posted" << post.substr(userid.length()+1,post.length()-userid.length()-1-7) << endl << endl;
                 }
             }
         }
@@ -153,6 +153,7 @@ bool alreadyindb() {
     void viewfriendlist(){
         fstream user_("friends.txt");
         system("clear");
+        cin.ignore();
         string extract;
         string friend_;
         string friend2_;

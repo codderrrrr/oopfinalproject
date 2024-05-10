@@ -15,7 +15,52 @@ string day;
 string month;
 string year;
 public:
-void memory(){
+void viewmemory(){
+    cin.ignore();
+    fstream postmemory("postmemory.txt");
+    if(postmemory.is_open()){
+        string d = getday();
+        string m = getmonth();
+        string y = getyear();
+        string postextract;
+        while(getline(postmemory,postextract)){
+            int i = 0;
+            string day,month,year,userid;
+            while(postextract[i]!='\0' && postextract[i]!='-'){
+                userid += postextract[i];
+                i++;
+            }
+            i++;
+            while(postextract[i]!='-'){
+                day += postextract[i];
+                i++;
+            }
+            i++;
+            while(postextract[i]!='-'){
+                month += postextract[i];
+                i++;
+            }
+            i++;
+            while(postextract[i]!='-'){
+                year += postextract[i];
+                i++;
+            }
+            i++;
+            if(day==d && month==m){
+                while(postextract[i]!='-'){
+                    cout << postextract[i];
+                    i++;
+                }
+                cout << endl;
+                cout << "\t\t\tmemory from: " << day << "-" << month << "-" << year << endl << endl;
+            }
+        }
+    }
+    else{
+        cout << "coulnot open file " << endl;
+    }
+}
+void activity_(){
     cout << "enter your feeling:" << "\t";
     getline(cin,activity);
     cout << "enter memory:" << endl;
@@ -35,7 +80,7 @@ void memory(){
     }
     memory.close();
 } 
-void displaymemories(){
+void displayactiities(){
     fstream memory("memories.txt");
     string id = getuserid();
     if(memory.is_open()){

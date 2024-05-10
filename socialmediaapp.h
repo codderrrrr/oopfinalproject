@@ -9,7 +9,7 @@
 #include "comments.h"
 #include "page.h"
 #include "memories.h"
-//#include <conio.h>
+
 class app : virtual public user, virtual public post, virtual public likes , virtual public comments, virtual public page, virtual public memories{
 private:
     int choice;
@@ -46,10 +46,10 @@ public:
                 home();
                 while(1){
                 cout << ANSI_WHITE;
-                cout << "Press any key to continue..." << std::endl;
+                cout << "Press any key to continue..." << endl;
                 cin.get(); 
                 system("clear");
-                cout << ANSI_CYAN << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:add friend\n9:memory\n10:display memory\n11:exit\n" << ANSI_RESET;
+                cout << ANSI_CYAN << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:add friend\n9:display activity\n10:post activity\n11:display memory\n12:exit\n" << ANSI_RESET;
                 cin >> choice2;
                 if(choice2==1){
                     cout << ANSI_YELLOW;
@@ -97,16 +97,21 @@ public:
                 else if(choice2==9){
                     cout << ANSI_BRIGHT_MAGENTA;
                     cin.ignore();
-                    displaymemories();
+                    displayactiities();
                     cout << ANSI_RESET;
                 }
                 else if(choice2==10){
                     cout << ANSI_GREEN;
                     cin.ignore();
-                    memory();
+                    activity_();
                     cout << ANSI_RESET;
                 }
-                else if(choice2==11){
+                else if(choice2 == 11){
+                    cout << ANSI_BRIGHT_CYAN;
+                    viewmemory();
+                    cout << ANSI_RESET;
+                }
+                else if(choice2 == 12){
                     break;
                 }
                 else{
@@ -117,9 +122,9 @@ public:
         } else if (choice == 2) {
             SIGNUP();
         } else if (choice == 3) {
-            std::exit(0);
+            exit(0);
         } else {
-            std::cout << "Invalid choice. Please try again.\n";
+            cout << "Invalid choice. Please try again.\n";
         }
     }
     }

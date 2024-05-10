@@ -24,7 +24,7 @@ void home() {
     cout << "                                |_|         |___/ " << endl;                                                
     fstream signin("friends.txt");
     if(signin.is_open()){
-        string extract,friendextract,friends;
+        string extract,friendextract,friends,timeextract,day,month,year,d = getday(),m = getmonth(),y = getyear();
         string n = getname();
         string id = getuserid();
         while(getline(signin,extract))
@@ -40,17 +40,43 @@ void home() {
                     }
                     i++;
                     fstream post_("post.txt");
-                    if(post_.is_open()){
-                        while(getline(post_,friends)){
-                            if(friends.substr(0,friendextract.length())==friendextract){
-                                friends = friends.substr(friendextract.length()+1);
-                                int j = 0;
-                                cout << friendextract << " posted:\n\t\t";
-                                while(friends[j]!='-'){
-                                    cout << friends[j];
-                                    j++;
-                                } 
-                                cout << endl;
+                    fstream time_("posttime.txt");
+                    if(post_.is_open() && time_.is_open()){
+                        while(getline(post_,friends) && getline(time_,timeextract)){
+                            day = "";
+                            month = "";
+                            year = "";
+                            if(friends.substr(0,friendextract.length())==friendextract && timeextract.substr(0,friendextract.length())==friendextract){
+                                timeextract = timeextract.substr(friendextract.length()+1);
+                                int i = 0;
+                                while(timeextract[i]!='\0'){
+                                    while(timeextract[i]!=' ' && timeextract[i]!='\0'){
+                                        day += timeextract[i];
+                                        i++;
+                                    }
+                                    i++;
+                                    while(timeextract[i]!=' ' && timeextract[i]!='\0'){
+                                        month += timeextract[i];
+                                        i++;
+                                    }
+                                    i++;
+                                    while(timeextract[i]!=' ' && timeextract[i]!='\0'){
+                                        year += timeextract[i];
+                                        i++;
+                                    }
+                                }
+                                int pday = stoi(d) -1;
+                                string previousday = to_string(pday);
+                                if((day == d || day == previousday) && month == m && year == y){
+                                    friends = friends.substr(friendextract.length()+1);
+                                    int j = 0;
+                                    cout << friendextract << " posted:\n\t\t";
+                                    while(friends[j]!='-'){
+                                        cout << friends[j];
+                                        j++;
+                                    } 
+                                    cout << endl;
+                                }
                             }
                         }
                     }
@@ -61,6 +87,9 @@ void home() {
                 }
             }
         }
+    }
+    else{
+        cout << "couldnot open" << endl;
     }
 }
 

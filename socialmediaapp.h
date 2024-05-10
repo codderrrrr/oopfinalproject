@@ -41,6 +41,7 @@ public:
         if (choice == 1) {
             cout << ANSI_GREEN;
             if(SIGNIN()==1){
+                settime();
                 cout << ANSI_RED;
                 home();
                 while(1){
@@ -48,7 +49,7 @@ public:
                 cout << "Press any key to continue..." << std::endl;
                 cin.get(); 
                 system("clear");
-                cout << ANSI_CYAN << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:add memory\n9:memory\n10:display memory\n11:exit\n" << ANSI_RESET;
+                cout << ANSI_CYAN << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:add friend\n9:memory\n10:display memory\n11:exit\n" << ANSI_RESET;
                 cin >> choice2;
                 if(choice2==1){
                     cout << ANSI_YELLOW;

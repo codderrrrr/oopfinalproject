@@ -7,3 +7,5 @@ int main() {
     a.run();
     return 0;
 }
+//document the code.
+//like no more than 10 and same for comments.

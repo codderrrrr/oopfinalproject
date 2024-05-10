@@ -25,20 +25,6 @@ void comment(){
     }
     comment.close();
 }
-// void displaypost(string postid){
-//     fstream comment("comments.text");
-//     string uid = getuserid();
-//     if(comment.is_open()){
-//         getline(comment,comment_);
-//         if(comment_.substr(0,postid.length())==postid){
-//             //cout << comment_.substr(postid.length()+2,postid.length()+uid.length()+3) << endl;
-//             //cout << comment_.substr(postid.length()+uid.length()+2);
-//         }
-//     }
-//     else{
-//         cout << "file is not able to open" << endl;
-//     }
-// }
 };
 
 #endif

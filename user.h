@@ -3,6 +3,7 @@
 
 #include <string>
 #include <fstream>
+#include <ctime>
 using namespace std;
 
 class user{
@@ -10,13 +11,25 @@ private:
     string name;
     string password;
     string userid;
+    string day;
+    string month;
+    string year;
 public:
     user(){
         name = "";
         password = "";
         userid = "";
     }
-    
+    void settime(){
+        time_t currentTime = time(nullptr);
+        tm* now = localtime(&currentTime);
+        int d = now->tm_mday;
+        int m = now->tm_mon + 1;
+        int y = now->tm_year + 1900; 
+        day = to_string(d);
+        month = to_string(m);
+        year = to_string(y);
+    }
     bool SIGNIN() {
     cin.ignore();
     string textreader,n,p,id;
@@ -65,6 +78,15 @@ public:
         cout << "couldnot open file" << endl;
         return 0;
     }
+}
+string getday(){
+    return day;
+}
+string getmonth(){
+    return month;
+}
+string getyear(){
+    return year;
 }
 bool alreadyindb() {
     cin.ignore();
@@ -116,18 +138,25 @@ bool alreadyindb() {
             fstream signin("signin.txt", ios::app);
             fstream info("name.txt", ios::app);
             fstream friend_("friends.txt", ios::app);
+            fstream fri_end("userfriends.txt", ios::app);
             if(signin.is_open() && info.is_open()){
                 signin << "\n" << name << "-" << userid << "-" << password << "-";
                 info << "\n" << userid << "-" << name;
                 friend_ << "\n" << name << "-";
+                fri_end << "\n" << name << "-";
             }
             else{
                 cout << "couldnot open file";
             }
+            signin.close();
+            info.close();
+            friend_.close();
+            fri_end.close();
         }
         else{
             cout << "data already in database" << endl;
         }
+
     }
     void userprofile(){
         system("clear");
@@ -151,131 +180,65 @@ bool alreadyindb() {
         posts.close();
     }
     void viewfriendlist(){
-        fstream user_("friends.txt");
-        system("clear");
         cin.ignore();
-        string extract;
-        string friend_;
-        string friend2_;
-        if(user_.is_open()){
-            while(!user_.eof()){
-                getline(user_,extract);
-                if(extract.substr(0,name.length())==name){
-                    friend_ = extract.substr(name.length()+1);
-                    break;
-                }
-            }
-            int i = 0;
-            cout << name << " has following friends:\n";
-            cout << "---------------------------------------------------" << endl;
-            while(friend_[i]!='\0'){
-                friend2_ ="";
-                while(friend_[i]!=' ' && friend_[i]!='\0'){
-                    friend2_ += friend_[i];
-                    i++;
-                }
-                while(friend_[i]==' '){
-                    i++;
-                }
-                string temp;
-                if(friend2_[0]=='s'){
-                    fstream f("name.txt");
-                    if(f.is_open()){
-                        while(!f.eof()){
-                            getline(f,temp);
-                            if(temp.substr(0,2)==friend2_){
-                                cout << temp.substr(3) << endl;
-                            }
+        cout << "the friend list of " << name << "is:\n" << endl;
+        fstream friend_("userfriends.txt");
+        if(friend_.is_open()){
+            string name = getname();
+            string line;
+            while(getline(friend_,line)){
+                if(line.substr(0,name.length())==name){
+                    line = line.substr(name.length()+1);
+                    int i = 0;
+                    while(line[i]!='\0'){
+                        while(line[i]!=' ' && line[i]!='\0'){
+                            cout << line[i];
+                            i++;
                         }
-                    }
-                    else{
-                        cout << "file couldnot open" << endl;
-                    }
-                    f.close();
-                }
-            }
-            i = 0;
-            cout << endl <<  name << " has following pages he has liked:\n";
-            cout << "---------------------------------------------------" << endl;
-            while(friend_[i]!='\0'){
-                friend2_ ="";
-                while(friend_[i]!=' ' && friend_[i]!='\0'){
-                    friend2_ += friend_[i];
-                    i++;
-                }
-                while(friend_[i]==' '){
-                    i++;
-                }
-                string temp;
-                if(friend2_[0]=='p'){
-                    fstream f2("page.txt");
-                    if(f2.is_open()){
-                        while(!f2.eof()){
-                            getline(f2,temp);
-                            if(temp.substr(0,2)==friend2_){
-                                cout << temp.substr(3) << endl;
-                            }
+                        if(line[i]!='\0'){
+                            i++;
                         }
+                       // i++;
+                        cout << endl;
                     }
-                    else{
-                        cout << "file couldnot open" << endl;
-                    }
-                    f2.close();
                 }
             }
-        }
-        else{
-            cout << "file couldnot open" << endl;
-        }
-        user_.close();
-    }
-    void addfriend(){
-        fstream friend_("friends.txt");
-        fstream namesandid("name.txt");
-        fstream temporaryfile("temp2.txt");
-        string f;
-        if(friend_.is_open() && temporaryfile.is_open() &&  namesandid.is_open()){
-            string temp;
-            string info;
-            while(!friend_.eof()){
-                getline(friend_,temp);
-                if(temp.substr(0,name.length())==name)
-                {
-                    cout << "enter id of user you want to add friend: " << endl;
-                    while(!namesandid.eof()){
-                        getline(namesandid,info);
-                        cout << info.substr(0,userid.length()) << ":\t" << info.substr(userid.length()+1) << endl;
-                    }
-                    cin.ignore();
-                    getline(cin,f);
-                    temp += " " + f;
-                    temporaryfile << temp << endl; 
-                    
-                }
-                else{
-                    temporaryfile << temp << endl;
-                }
-            }
+            friend_.close();
         }
         else{
             cout << "couldnot open file\n";
         }
-        friend_.close();
-        temporaryfile.close();
-        fstream friend__("friends.txt");
-        fstream temporaryfile_("temp2.txt");
-        f = "";
-        if(temporaryfile_.is_open() && friend__.is_open()){
-            while(!temporaryfile_.eof()){
-                getline(temporaryfile_,f);
-                friend__ << f << endl;
+    }
+    void addfriend(){
+        cin.ignore();
+        fstream friends_("userfriends.txt");
+        ofstream tfaf("temptoaddfriend.txt");
+        string add;
+        cout << "enter userid you want to add as friend" << endl;
+        getline(cin,add);
+        if(friends_.is_open() && tfaf.is_open()){
+            string extract;
+            while(getline(friends_,extract)){
+                if(extract.substr(0,name.length())==name){
+                    if(extract[extract.length()-2]!='-')
+                    {
+                        extract += " " + add;
+                        tfaf << extract << endl; 
+                    }
+                    else if(extract[extract.length()-2]=='-'){
+                        extract += add;
+                        tfaf << extract << endl;
+                    }
+                }
+                else{
+                    tfaf << extract << endl;
+                }
             }
-        }
-        else{
-            cout << "couldnot open file " << endl;
-        }
-        friend__.close();
-        temporaryfile_.close();
+        } 
+        friends_.close();
+        tfaf.close();
+        rename("temptoaddfriend.txt", "userfriends.txt");
+        remove("temptoaddfriend.txt");
     }
     string getuserid(){
         return userid;

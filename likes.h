@@ -100,16 +100,9 @@ void likepost(){
         }
     }
     like_.close();
-    temp.seekg(0, std::ios::beg);
-    fstream like("likes.txt");
-    while(!temp.eof()){
-        string line = "";
-        getline(temp,line);
-        like << line;
-        like << endl;
-    }
     temp.close();
-    like.close();
+    rename("temp.txt","likes.txt");
+    remove("temp.txt");
 }   
 };
 

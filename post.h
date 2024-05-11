@@ -135,9 +135,13 @@ void addpost(){
     }
 }
 void display(){
-    cout << "enter id of post you want to display post with comments:" << endl;
     cin.ignore();
+    cout << "enter id of post you want to display post with comments:" << endl;
     getline(cin,postid);
+    if(postid.length()<5){
+        cout << "enter valid postid" << endl;
+        return ;
+    }
     fstream posts_("post.txt");
     string extract;
     string matchpostid = "";

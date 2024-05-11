@@ -24,6 +24,10 @@ public:
 void displaylike(){
     cout << "enter postid to view like" << endl;
     getline(cin,likepostid);
+    if(likepostid.length()<5){
+        cout << "enter valid postid" << endl;
+        return ;
+    }
     fstream post_("post.txt");
     if(post_.is_open()){
         string postextract;
@@ -91,6 +95,10 @@ void displaylike(){
 void likepost(){
     cout << "enter the id of post you want to like: " << endl;
     getline(cin,likepostid);
+    if(likepostid.length()<5){
+        cout << "enter valid postid" << endl;
+        return ;
+    }
     fstream likes_("likes.txt");
     int friendscount = 0;
     bool lessthanten;

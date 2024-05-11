@@ -25,6 +25,10 @@ public:
 void comment(){
     cout << "enter id of post you want to comment on:" << endl;
     getline(cin,id);
+    if(id.length()<5){
+        cout << "enter valid postid" << endl;
+        return ;
+    }
     int commentcount = 0;
     bool islessthanten;
     string extract;

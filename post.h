@@ -138,6 +138,41 @@ void display(){
     cout << "enter id of post you want to display post with comments:" << endl;
     cin.ignore();
     getline(cin,postid);
+    fstream posts_("post.txt");
+    string extract;
+    string matchpostid = "";
+    string userid = "";
+    string display = "";
+    if(posts_.is_open()){
+        while(getline(posts_,extract)){
+            int i= 0;
+            matchpostid = "", userid = "", display = "";
+                while(extract[i]!='-'){
+                userid += extract[i];
+                i++;
+            }
+            i++;
+            while(extract[i]!='-'){
+                display += extract[i];
+                i++;
+            }
+            i++;
+            while(extract[i]!='-'){
+                matchpostid += extract[i];
+                i++;
+            }
+            if(matchpostid==postid)
+            {
+                cout << userid << " posted:\n\t\t"<< display << endl;
+                break;
+            }
+        }
+    }
+    else{
+        cout << "couldnot ope file\n";
+    }
+    posts_.close();
+    cout << "\n\nComments:\n";
     string comment_;
     string uid = getuserid();
     fstream comment("comments.txt");

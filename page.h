@@ -1,3 +1,14 @@
+/*
+    File: page.h
+    Author: saad waqar
+
+    Description:
+    This header file defines the page class, representing a page within the social media app.
+    It enables users to view page profiles and posts, as well as interact with page content.
+    No dependencies.
+*/
+
+
 #ifndef PAGE_H
 #define PAGE_H
 

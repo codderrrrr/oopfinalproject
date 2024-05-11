@@ -1,3 +1,14 @@
+/*
+    File: user.h
+    Author: saad waqar
+
+    Description:
+    This header file defines the user class, representing a user of the social media app.
+    It handles user authentication, profile management, friend-related functionalities, and user interactions.
+    No dependencies.
+*/
+
+
 #ifndef USER_H
 #define USER_H
 

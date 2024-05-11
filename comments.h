@@ -1,3 +1,14 @@
+/*
+    File: comments.h
+    Author: saad waqar
+
+    Description:
+    This header file defines the comments class, handling comments on posts.
+    It allows users to comment on posts, manage comments, and limit the number of comments per post.
+    Dependencies: user.h
+*/
+
+
 #ifndef COMMENTS_H
 #define COMMENTS_H
 

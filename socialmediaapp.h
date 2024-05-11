@@ -1,3 +1,14 @@
+/*
+    File: app.h
+    Author: saad waqar
+
+    Description:
+    This header file defines the app class, representing the main application logic for the social media app.
+    It implements the main user interface and interaction flow, integrating functionalities from other classes.
+    Dependencies: user.h, post.h, likes.h, comments.h, page.h, memories.h
+*/
+
+
 #ifndef APP_H
 #define APP_H
 #define ANSI_COLOR_RED     "\x1b[31m"
@@ -49,7 +60,7 @@ public:
                 cout << "Press any key to continue..." << endl;
                 cin.get(); 
                 system("clear");
-                cout << ANSI_CYAN << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:add friend\n9:display activity\n10:post activity\n11:display memory\n12:exit\n" << ANSI_RESET;
+                cout << ANSI_CYAN << "enter\n1:display likes\n2:like a post\n3:comment\n4:display post\n5:user profile\n6:page profile\n7:view friends\n8:add friend\n9:display activity\n10:post activity\n11:display memory\n12:add post\n13:exit\n" << ANSI_RESET;
                 cin >> choice2;
                 if(choice2==1){
                     cout << ANSI_YELLOW;
@@ -112,6 +123,11 @@ public:
                     cout << ANSI_RESET;
                 }
                 else if(choice2 == 12){
+                    cout << ANSI_BLUE;
+                    addpost();
+                    cout << ANSI_RESET;
+                }
+                else if(choice2 == 13){
                     break;
                 }
                 else{

@@ -1,3 +1,14 @@
+/*
+    File: likes.h
+    Author: saad waqar
+
+    Description:
+    This header file defines the likes class, which manages post likes within the social media app.
+    It provides functionalities to view likes on posts, like/unlike posts, and limit the number of likes per post.
+    Dependencies: user.h, post.h
+*/
+
+
 #ifndef LIKES_H
 #define LIKES_H
 #include <iostream>

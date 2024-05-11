@@ -1,3 +1,14 @@
+/*
+    File: memories.h
+    Author: saad waqar
+
+    Description:
+    This header file defines the memories class, which manages memories and activities shared by users.
+    It provides functionalities to view, record, and manage user activities and associated feelings.
+    Dependencies: user.h
+*/
+
+
 #ifndef MEMORIES_H
 #define MEMORIES_H
 
@@ -59,6 +70,7 @@ void viewmemory(){
     else{
         cout << "coulnot open file " << endl;
     }
+    postmemory.close();
 }
 void activity_(){
     cout << "enter your feeling:" << "\t";

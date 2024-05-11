@@ -1,3 +1,12 @@
+/*
+    File: post.h
+    Author: saad waqar
+
+    Description:
+    This header file defines the post class, which represents a post made by a user on a social media app.
+    It provides functionalities to view, interact with, and manage posts within the application.
+    Dependencies: user.h
+*/
 #ifndef POST_H
 #define POST_H
 
@@ -93,6 +102,38 @@ void home() {
     }
 }
 
+void addpost(){
+    cin.ignore();
+    fstream post_("post.txt");
+    int postno = 0;
+    string extract;
+    if(post_.is_open()){
+        while(getline(post_,extract)){
+            postno++;
+        }
+        postno++;
+    }
+    else{
+        cout << "couldnot open file." << endl;
+    }
+    post_.close();
+    string postid_ = "post" + to_string(postno);
+    cout << postid_ << endl;
+    string texttopost;
+    cout << "enter post:" << endl;
+    getline(cin,texttopost);
+    fstream posttime_("posttime.txt", ios::app);
+    fstream posts_("post.txt" , ios::app);
+    fstream postmemory_("postmemory.txt" , ios::app);
+    if(posts_.is_open() && posttime_.is_open() && postmemory_.is_open()){
+        posts_ << endl << getuserid() << "-" << texttopost << "-" << postid_ << "-";
+        posttime_ << endl << getuserid() << "-" << getday() << " " << getmonth() << " " << getyear();
+        postmemory_ << endl << getuserid() << "-" << getday() << "-" << getmonth() << "-" << getyear() << "-" << texttopost << "-";
+    }
+    else{
+        cout << "couldnot open file\n";
+    }
+}
 void display(){
     cout << "enter id of post you want to display post with comments:" << endl;
     cin.ignore();

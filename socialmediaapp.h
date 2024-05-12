@@ -26,8 +26,9 @@ private:
     int choice;
     int choice2;
 public:
-    app() : user() {
+    app() : user(),post(),likes(),comments(),page(),memories() {
     choice = 0;
+    choice2 = 0;
 }
     void run(){
     while (choice != 3) {

@@ -18,7 +18,7 @@ using namespace std;
 class post :virtual public user{
 string postid;
 public:
-post(){
+post() : user(){
     postid = "";
 }
 void home() {

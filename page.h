@@ -20,6 +20,9 @@ using namespace std;
 class page{
 string pageid;
 public:
+page(){
+    pageid = "";
+}
 void pageprofile(){
     cin.ignore();
     cout << "enter id of page: " << endl;

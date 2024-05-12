@@ -21,6 +21,9 @@ using namespace std;
 class likes: virtual public post , virtual public user{
     string likepostid;
 public:
+likes() : post() , user(){
+    likepostid = "";
+}
 void displaylike(){
     cout << "enter postid to view like" << endl;
     getline(cin,likepostid);

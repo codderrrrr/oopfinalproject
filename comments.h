@@ -22,6 +22,10 @@ class comments: virtual public user{
 string id;
 string comment_;
 public:
+comments() : user(){
+    id = "";
+    comment_ = "";
+}
 void comment(){
     cout << "enter id of post you want to comment on:" << endl;
     getline(cin,id);

@@ -22,10 +22,17 @@ using namespace std;
 class memories : virtual private user{
 string memories_;
 string activity;
-string day;
-string month;
-string year;
+string dayofmemory;
+string monthofmemory;
+string yearofmemory;
 public:
+memories() : user(){
+    memories_ = "";
+    activity = "";
+    dayofmemory = "";
+    monthofmemory = "";
+    yearofmemory = "";
+}
 void viewmemory(){
     cin.ignore();
     fstream postmemory("postmemory.txt");
@@ -36,34 +43,34 @@ void viewmemory(){
         string postextract;
         while(getline(postmemory,postextract)){
             int i = 0;
-            string day,month,year,userid;
+            string dayofmemory,monthofmemory,yearofmemory,userid;
             while(postextract[i]!='\0' && postextract[i]!='-'){
                 userid += postextract[i];
                 i++;
             }
             i++;
             while(postextract[i]!='-'){
-                day += postextract[i];
+                dayofmemory += postextract[i];
                 i++;
             }
             i++;
             while(postextract[i]!='-'){
-                month += postextract[i];
+                monthofmemory += postextract[i];
                 i++;
             }
             i++;
             while(postextract[i]!='-'){
-                year += postextract[i];
+                yearofmemory += postextract[i];
                 i++;
             }
             i++;
-            if(day==d && month==m){
+            if(dayofmemory==d && monthofmemory==m){
                 while(postextract[i]!='-'){
                     cout << postextract[i];
                     i++;
                 }
                 cout << endl;
-                cout << "\t\t\tmemory from: " << day << "-" << month << "-" << year << endl << endl;
+                cout << "\t\t\tmemory from: " << dayofmemory << "-" << monthofmemory << "-" << yearofmemory << endl << endl;
             }
         }
     }
@@ -77,15 +84,15 @@ void activity_(){
     getline(cin,activity);
     cout << "enter memory:" << endl;
     getline(cin,memories_);
-    cout << "enter day" << endl;
-    getline(cin,day);
-    cout << "enter month" << endl;
-    getline(cin,month);
-    cout << "enter year" << endl;
-    getline(cin,year);
+    cout << "enter dayofmemory" << endl;
+    getline(cin,dayofmemory);
+    cout << "enter monthofmemory" << endl;
+    getline(cin,monthofmemory);
+    cout << "enter yearofmemory" << endl;
+    getline(cin,yearofmemory);
     fstream memory("memories.txt", ios::app);
     if(memory.is_open()){
-        memory << "\n" <<  getuserid() << "-" << getname() << " is feeling " << activity << "-" << memories_ << "-" << day << "-" << month << "-" << year << "-";
+        memory << "\n" <<  getuserid() << "-" << getname() << " is feeling " << activity << "-" << memories_ << "-" << dayofmemory << "-" << monthofmemory << "-" << yearofmemory << "-";
     }
     else{
         cout << "couldnot open file" << endl;

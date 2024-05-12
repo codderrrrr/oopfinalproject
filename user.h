@@ -26,10 +26,14 @@ private:
     string month;
     string year;
 public:
-    user(){
+    user()
+    {
         name = "";
         password = "";
         userid = "";
+        day = "";
+        month = "";
+        year = "";
     }
     void settime(){
         time_t currentTime = time(nullptr);
@@ -261,7 +265,7 @@ bool alreadyindb() {
         return name;
     }
     virtual ~user(){
-        
+
     }
 };
 #endif 

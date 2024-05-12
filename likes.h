@@ -55,6 +55,7 @@ void displaylike(){
     else{
         cout << "couldnot open file\n";
     }
+    post_.close();
     fstream LIKE("likes.txt");
     if(LIKE.is_open()){
           while(!LIKE.eof()){
@@ -163,6 +164,7 @@ void likepost(){
         cout << "post has more than 10 likes.\n";
     }
 }   
+virtual ~likes(){}
 };
 
 

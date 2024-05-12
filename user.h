@@ -81,6 +81,7 @@ public:
                 continue;
             }
             name = n;
+            signin.close();
             return 1;
         }
         return 0;
@@ -133,6 +134,7 @@ bool alreadyindb() {
             }
         }
         cout << userid << endl;
+        signin.close();
         return 0;
     }
     else{
@@ -257,6 +259,9 @@ bool alreadyindb() {
     
     string getname(){
         return name;
+    }
+    virtual ~user(){
+        
     }
 };
 #endif 

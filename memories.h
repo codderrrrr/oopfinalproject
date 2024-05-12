@@ -126,6 +126,7 @@ void displayactiities(){
     }
     memory.close();
 }
+virtual ~memories(){}
 };
 
 #endif

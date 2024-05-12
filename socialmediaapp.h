@@ -144,6 +144,7 @@ public:
         }
     }
     }
+    virtual ~app(){}
 };
 
 #endif 

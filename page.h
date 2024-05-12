@@ -20,9 +20,6 @@ using namespace std;
 class page{
 string pageid;
 public:
-// void home(){
-
-// }
 void pageprofile(){
     cin.ignore();
     cout << "enter id of page: " << endl;
@@ -58,6 +55,9 @@ void pageprofile(){
         cout << "couldnot open file: " << endl;
     }
     posts_.close();
+}
+virtual ~page(){
+
 }
 };
 

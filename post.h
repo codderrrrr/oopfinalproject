@@ -93,6 +93,7 @@ void home() {
                         cout << "couldnot open file" << endl;
                     }
                     post_.close();
+                    time_.close();
                 }
             }
         }
@@ -100,6 +101,7 @@ void home() {
     else{
         cout << "couldnot open" << endl;
     }
+    signin.close();
 }
 
 void addpost(){
@@ -133,6 +135,9 @@ void addpost(){
     else{
         cout << "couldnot open file\n";
     }
+    posttime_.close();
+    posts_.close();
+    postmemory_.close();
 }
 void display(){
     cin.ignore();
@@ -195,6 +200,10 @@ void display(){
     else{
         cout << "file is not able to open" << endl;
     } 
+    comment.close();
+}
+virtual ~post(){
+
 }
 };
 

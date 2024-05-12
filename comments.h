@@ -66,6 +66,6 @@ void comment(){
         cout << "the post has more than 10 comments" << endl;
     }
 }
+virtual ~comments(){}
 };
-
 #endif

@@ -32,22 +32,22 @@ public:
 }
     void run(){
     while (choice != 3) {
-        const std::string ANSI_RESET = "\033[0m";
-        const std::string ANSI_RED = "\033[31m";
-        const std::string ANSI_GREEN = "\033[32m";
-        const std::string ANSI_YELLOW = "\033[33m";
-        const std::string ANSI_BLUE = "\033[34m";
-        const std::string ANSI_MAGENTA = "\033[35m";
-        const std::string ANSI_CYAN = "\033[36m";
-        const std::string ANSI_WHITE = "\033[37m";
-        const std::string ANSI_BRIGHT_BLACK = "\033[90m";
-        const std::string ANSI_BRIGHT_RED = "\033[91m";
-        const std::string ANSI_BRIGHT_GREEN = "\033[92m";
-        const std::string ANSI_BRIGHT_YELLOW = "\033[93m";
-        const std::string ANSI_BRIGHT_BLUE = "\033[94m";
-        const std::string ANSI_BRIGHT_MAGENTA = "\033[95m";
-        const std::string ANSI_BRIGHT_CYAN = "\033[96m";
-        const std::string ANSI_BRIGHT_WHITE = "\033[97m";
+        const string ANSI_RESET = "\033[0m";
+        const string ANSI_RED = "\033[31m";
+        const string ANSI_GREEN = "\033[32m";
+        const string ANSI_YELLOW = "\033[33m";
+        const string ANSI_BLUE = "\033[34m";
+        const string ANSI_MAGENTA = "\033[35m";
+        const string ANSI_CYAN = "\033[36m";
+        const string ANSI_WHITE = "\033[37m";
+        const string ANSI_BRIGHT_BLACK = "\033[90m";
+        const string ANSI_BRIGHT_RED = "\033[91m";
+        const string ANSI_BRIGHT_GREEN = "\033[92m";
+        const string ANSI_BRIGHT_YELLOW = "\033[93m";
+        const string ANSI_BRIGHT_BLUE = "\033[94m";
+        const string ANSI_BRIGHT_MAGENTA = "\033[95m";
+        const string ANSI_BRIGHT_CYAN = "\033[96m";
+        const string ANSI_BRIGHT_WHITE = "\033[97m";
         cout << ANSI_MAGENTA << "Enter:\n1) Sign-in\n2) Sign-up\n3) Exit\n" << ANSI_RESET;
         cin >> choice;
         if (choice == 1) {

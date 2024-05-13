@@ -81,13 +81,13 @@ public:
                 continue;
             }
             if(p!=password){
-                cout << "password not matched" << endl;
                 continue;
             }
             name = n;
             signin.close();
             return 1;
         }
+        cout << "password or userid not matched\n";
         return 0;
     }
     else{
